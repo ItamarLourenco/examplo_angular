@@ -1,0 +1,81 @@
+<style type="text/css">
+    .form-horizontal input.ng-invalid.ng-dirty {
+        border-color: #FA787E;
+    }
+
+    .form-horizontal input.ng-valid.ng-dirty {
+        border-color: #78FA89;
+    }
+</style>
+
+<div class="view">
+    <div class="container">
+        <div class="row">
+            <nav class= "navbar navbar-default" role= "navigation" >
+                <div class= "navbar-header" >
+                    <a class= "navbar-brand" href= "#/usuarios"><i class="glyphicon glyphicon-th-large"></i> Usuários cadastrados </a>
+                    <a ng-show="usuario._id" class= "navbar-brand" href= "#/editar-usuarior/0"><i class="glyphicon glyphicon-plus"></i> Criar Novo Usuário </a>
+                    <a ng-show="usuario._id" class= "navbar-brand pull-right"><i class="glyphicon glyphicon-edit"></i> Usuário Id: {{usuario._id}}</a>
+                </div>
+            </nav>
+
+            <header>
+                <h3>{{title}}</h3>
+            </header>
+            <div class="col-md-12">
+                <form role="form" name="myForm" class="form-horizontal">
+                    <div class="row">
+                    
+                        <div class= "form-group" ng-class="{error: myForm.name.$invalid}">
+                            <label class= "col-md-2"> Nome </label>
+                            <div class="col-md-4">
+                                <input name="nome   " ng-model="usuario.nome" type= "text" class= "form-control" placeholder="Nome" required/>
+                                <span ng-show="myForm.nome.$dirty && myForm.nome.$invalid" class="help-inline">Por favor, preencha o nome</span>
+                            </div>
+                        </div>
+
+                        <div class= "form-group">
+                            <label class= "col-md-2"> Email </label>
+                            <div class="col-md-4">
+                                <input name="email" ng-model="usuario.email" type= "email" class= "form-control" placeholder="Email" required/>
+                                <span ng-show="myForm.email.$dirty && myForm.email.$invalid && !myForm.email.$error.email" class="help-inline">Por favor, preencha o email</span>
+                                <span ng-show="myForm.email.$error.email" class="help-inline">Por favor, preencha o correntamente</span>
+                            </div>
+                        </div>
+
+                        <div class= "form-group">
+                            <label class= "col-md-2">Endereço </label>
+                            <div class="col-md-4">
+                                <input ng-model="usuario.endereco" type= "text" class= "form-control" placeholder="Endereço"/>
+                            </div>
+                        </div>
+
+                        <div class= "form-group">
+                            <label class= "col-md-2">Cidade </label>
+                            <div class="col-md-4">
+                                <input ng-model="usuario.cidade" type= "text" class= "form-control" placeholder="Cidade"/>
+                            </div>
+                        </div>
+
+                        <div class= "form-group">
+                            <label class= "col-md-2">Estado </label>
+                            <div class="col-md-4">
+                                <input ng-model="usuario.estado" type= "text" class= "form-control" placeholder="Estado"/>
+                            </div>
+                        </div>
+
+                        <div class= "form-group">
+                            <label class= "col-md-2"></label>
+                            <div class="col-md-4">
+                                <a href="#/" class="btn">Cancelar</a>
+                                <button ng-click="salvarUsuario(usuario);" ng-disabled="limpar() || myForm.$invalid" class="btn btn-primary">{{buttonText}}</button>
+                                <button ng-click="deletarUsuario(usuario)" ng-show="usuario._id" class="btn btn-warning">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
